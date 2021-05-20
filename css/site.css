@@ -1,0 +1,176 @@
+body,
+html {
+  height: 100%;
+}
+body {
+  background: #fff;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.15;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+*,
+:after,
+:before,
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-size: 1em;
+  -webkit-text-size-adjust: 100%;
+}
+code,
+kbd,
+pre {
+  font-family: Roboto Mono, monospace;
+  position: relative;
+}
+pre {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+pre.highlight {
+  position: relative;
+}
+pre.highlight code {
+  background: #f5f5f5;
+  -webkit-box-shadow: 0 0 0 1px #e1e1e1;
+  box-shadow: 0 0 0 1px #e1e1e1;
+  display: block;
+  overflow-x: auto;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+.content {
+  padding-top: 1em;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+/*! Adapted from the GitHub style by Vasily Polovnyov <vast@whiteants.net> */
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #07a;
+}
+.hljs-doctag,
+.hljs-literal,
+.hljs-number,
+.hljs-string,
+.hljs-tag .hljs-attr,
+.hljs-template-variable,
+.hljs-variable {
+  color: #690;
+}
+.hljs-section,
+.hljs-selector-id,
+.hljs-title {
+  color: #900;
+}
+.hljs-subst {
+  font-weight: 400;
+}
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #900;
+}
+.hljs-attribute,
+.hljs-name,
+.hljs-tag {
+  color: navy;
+  font-weight: 400;
+}
+.hljs-link,
+.hljs-regexp {
+  color: #009926;
+}
+.hljs-bullet,
+.hljs-symbol {
+  color: #990073;
+}
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #6f42c1;
+}
+.hljs-meta {
+  color: #999;
+}
+.hljs-deletion {
+  background: #fdd;
+}
+.hljs-addition {
+  background: #dfd;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 600;
+}
+.hljs:before {
+  display: none !important;
+}
+[contenteditable="plaintext-only"]:focus {
+  outline: none;
+}
+.codejar-linenumbers,
+[contenteditable="plaintext-only"]:focus {
+  -webkit-box-shadow: 0 0 0 1px #e1e1e1;
+  box-shadow: 0 0 0 1px #e1e1e1;
+}
+.codejar-linenumbers {
+  padding-top: 0.75rem !important;
+  mix-blend-mode: normal !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  text-align: center;
+}
+.run-button {
+  position: absolute;
+  z-index: 1;
+  right: 3px;
+  top: 8px;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  opacity: 0.3;
+  -webkit-transition: opacity 0.1s ease-out;
+  transition: opacity 0.1s ease-out;
+}
+.run-button:focus,
+.run-button:hover {
+  opacity: 1;
+}
+.run-button:hover .run-label {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1;
+}
+.run-label {
+  margin-right: 0.5em;
+  line-height: 1;
+  margin-top: -3px;
+  font-family: Roboto Mono, monospace;
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+  opacity: 0;
+  -webkit-transition: opacity 0.1s ease-out, -webkit-transform 0.2s ease-out;
+  transition: opacity 0.1s ease-out, -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, opacity 0.1s ease-out;
+  transition: transform 0.2s ease-out, opacity 0.1s ease-out, -webkit-transform 0.2s ease-out;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motoko Playground</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <div class="content">
+    <h2>Motoko Playground</h2>
+    <div class='editor'><pre id="editor" class="highlightjs highlight motoko hljs" contenteditable="plaintext-only" spellcheck="false"><code class="language-motoko hljs" data-lang="motoko">import Debug "mo:base/Debug";
+Debug.print("Hello Motoko!");</code></pre></div>
+  </div>
+  <script async src="/js/vendor/highlight.js"></script>
+  <script src="/js/vendor/run_repl.js"></script>
+  <script type="module">
+    import {CodeJar} from 'https://cdn.jsdelivr.net/npm/codejar@3.2.3/codejar.min.js';
+    import {withLineNumbers} from 'https://cdn.jsdelivr.net/npm/codejar@3.2.3/linenumbers.js';
+    window.CodeJar = CodeJar;
+    window.withLineNumbers = withLineNumbers;
+  </script>
+  <script type="text/javascript">
+  async function addPackage(name, repo, version, dir) {
+    const meta_url = `https://data.jsdelivr.com/v1/package/gh/${repo}@${version}/flat`;
+    const base_url = `https://cdn.jsdelivr.net/gh/${repo}@${version}`;
+    const response = await fetch(meta_url);
+    const json = await response.json()
+    const promises = [];
+    const fetchedFiles = [];
+    for (const f of json.files) {
+      if (f.name.startsWith(`/${dir}/`) && /\.mo$/.test(f.name)) {
+        const promise = (async () => {
+          const content = await (await fetch(base_url + f.name)).text();
+          const stripped = name + f.name.slice(dir.length + 1);
+          fetchedFiles.push(stripped);
+          Motoko.saveFile(stripped, content);
+        })();
+        promises.push(promise);
+      }
+    }
+    Promise.all(promises).then(() => {
+      Motoko.addPackage(name, name + '/');
+      changeCodeBlock(); // from run_repl.js
+    });
+  }
+  function loadBase() {
+    addPackage('base', 'dfinity/motoko-base', 'dfx-0.7.0-beta.2', 'src');
+  }
+  </script>
+  <script async src="https://download.dfinity.systems/motoko/0.5.14/js/moc-interpreter-0.5.14.js" onload="loadBase()"></script>
+</body>
+</html>
